@@ -1,0 +1,42 @@
+apply plugin: 'java-library'
+
+ext {
+    bintrayRepo = 'xinonix-public-repository'
+    bintrayName = 'retrofhir'
+
+    publishedGroupId = 'com.xinonix.retrofhir'
+    libraryName = 'RetroFHIR'
+    artifact = 'retrofhir'
+
+    libraryDescription = 'Retrofit REST Client for FHIR'
+
+    siteUrl = 'https://github.com/davidvaccaro/RetroFHIR'
+    gitUrl = 'https://github.com/davidvaccaro/RetroFHIR'
+
+    libraryVersion = '1.0.1'
+
+    developerId = 'davidvaccaro'
+    developerName = 'David Vaccaro'
+    developerEmail = 'dvaccaro@xinonix.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation project(':gsonfhir')
+}
+
+version = '1.0.1'
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
