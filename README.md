@@ -4,7 +4,7 @@
 Download
 --------
 
-[Maven][3]:
+Maven:
 ```xml
 <dependency>
   <groupId>com.xinonix.retrofhir</groupId>
@@ -13,9 +13,45 @@ Download
   <type>pom</type>
 </dependency>
 ```
-[Gradle][3]:
+Gradle:
 ```groovy
 implementation 'com.xinonix.retrofhir:retrofhir:1.0.1'
+```
+
+Usage
+--------
+
+Select a Bundle of FHIR DocumentReferences by a specified patient-id and document status:
+
+```code
+DocumentReferenceInteractor 
+    .Composer()       
+    .baseUrl("http://..../fhir-server/")        	
+    .setParameter("patient.identifier", "patientId") 
+    .setStatus(DocumentReference.Status.CURRENT) 
+    .compose() 
+    .search(new retrofit2.Callback<Bundle>() {
+        @Override            
+        public void onResponse(Call<Bundle> call,  Response<Bundle> response) {
+              // TODO – Process the Bundle of DocumentReferences
+        }
+      });
+```
+
+Select a Bundle of FHIR ImagingStudies by a specified patient-id:
+
+```code
+ImagingStudyInteractor
+        .Composer()
+        .baseUrl("http://..../fhir-server/")
+        .setParameter("patient.identifier", "patientId")
+        .compose()
+        .search(new retrofit2.Callback<Bundle>() {
+            @Override
+            public void onResponse(Call<Bundle> call, Response<Bundle> response) {
+              // TODO – Process the Bundle of ImagingStudies
+            }
+        });
 ```
 
 License
